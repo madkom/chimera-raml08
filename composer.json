@@ -1,0 +1,41 @@
+{
+  "name": "madkom/ramlpaser",
+  "description": "Parser to Chimera",
+  "type": "library",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:madkom/chimera.git"
+    }
+  ],
+  "require": {
+    "php": "~7",
+    "madkom/chimera": "@dev",
+    "alecsammon/php-raml-parser": "2.1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.*",
+    "mdarse/phpunit-notifier": "@dev",
+    "symfony/var-dumper": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Madkom\\Chimera\\Parser\\RAML08\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Madkom\\Chimera\\Parser\\RAML08\\Tests\\": "tests/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Damian Karpiński",
+      "email": "d.karpinski@madkom.pl"
+    }
+  ],
+  "config": {
+    "bin-dir": "bin/"
+  }
+}

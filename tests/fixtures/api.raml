@@ -1,0 +1,122 @@
+#%RAML 0.8
+title: Test RAML
+version: 1.0
+baseUri: https://{bucketName}.s3.amazonaws.com
+schemas:
+  - clients: !include schemas/clients.json
+  - client: !include schemas/client.json
+  - post-put-client: !include schemas/post-put-client.json
+  - delete-client: !include schemas/delete-client.json
+
+/api/1.0/clients:
+  get:
+    description: |
+      Get clients collection
+    responses:
+      200:
+        headers:
+          Access-Control-Allow-Origin:
+            example: |
+              *
+        body:
+          application/json:
+            schema: clients
+            example: !include examples/clients.json
+  post:
+    description: |
+      Create new client
+    body:
+      application/json:
+        schema: post-put-client
+        example: !include examples/post-put-client.json
+    responses:
+      200:
+        headers:
+          Access-Control-Allow-Origin:
+            example: |
+              *
+        body:
+          application/json:
+            schema: client
+            example: !include examples/client.json
+  /{id}:
+    uriParameters:
+      id:
+        type: integer
+        example: 1
+    get:
+      description: |
+        Get one client
+      responses:
+        200:
+          headers:
+            Access-Control-Allow-Origin:
+              example: |
+                *
+          body:
+            application/json:
+              schema: client
+              example: !include examples/client.json
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "Client not found"}
+    put:
+      description: |
+        Update one client
+      body:
+        application/json:
+          schema: post-put-client
+          example: !include examples/post-put-client.json
+      responses:
+        200:
+          headers:
+            Access-Control-Allow-Origin:
+              example: |
+                *
+          body:
+            application/json:
+              schema: client
+              example: !include examples/client.json
+    delete:
+      description: |
+        Delete one client
+      responses:
+        200:
+          headers:
+            Access-Control-Allow-Origin:
+              example: |
+                *
+          body:
+            application/json:
+              schema: delete-client
+              example: !include examples/delete-client.json
+    /informations:
+      get:
+        description: |
+          Get informations about client
+        responses:
+          402:
+            headers:
+              Access-Control-Allow-Origin:
+                example: |
+                  *
+            body:
+              application/json:
+                example: |
+                  {"message": "Payment required"}
+    /no_body:
+      get:
+        description: |
+          Get informations about client
+        responses:
+          200:
+    /no_response:
+      get:
+        description: |
+          Get informations about client
+
+documentation:
+  - title: Headline
+    content: !include docs/headline.md
